@@ -1,94 +1,66 @@
-// import { useState, useEffect } from 'react';
-// import { api } from './api/apiService';
-// import TutorForm from './components/TutorForm';
-// import TutorList from './components/TutorList';
-// import MascotaForm from './components/MascotaForm';
-// import MascotaList from './components/MascotaList';
-import { Landing } from './pages/Landing';
+import { useState } from 'react';
+import { usePetisosData } from './hooks/usePetisosData';
+import LandingPage from './components/Landing';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import TutorForm from './components/TutorForm';
+import TutorList from './components/TutorList';
+import MascotaForm from './components/MascotaForm';
+import MascotaList from './components/MascotaList';
 
 export default function App() {
-  // const [activeTab, setActiveTab] = useState('tutores');
-  // const [tutores, setTutores] = useState([]);
-  // const [mascotas, setMascotas] = useState([]);
-  
-  // const [tutorEdit, setTutorEdit] = useState(null);
-  // const [mascotaEdit, setMascotaEdit] = useState(null);
-  // const [error, setError] = useState(null);
+  const [currentScreen, setCurrentScreen] = useState('landing'); // 'landing' | 'login' | 'register' | 'dashboard'
+  const [activeTab, setActiveTab] = useState('tutores'); // 'tutores' | 'mascotas'
 
-  // useEffect(() => {
-  //   cargarDatos();
-  // }, []);
+  // Hook que contiene toda la lógica de negocio y llamadas HTTP
+  const {
+    tutores,
+    mascotas,
+    tutorEdit,
+    setTutorEdit,
+    mascotaEdit,
+    setMascotaEdit,
+    error,
+    handleSaveTutor,
+    handleDeleteTutor,
+    handleSaveMascota,
+    handleDeleteMascota
+  } = usePetisosData();
 
-  // const cargarDatos = async () => {
-  //   try {
-  //     setError(null);
-  //     const dataTutores = await api.getTutores();
-  //     const dataMascotas = await api.getMascotas();
-  //     setTutores(dataTutores);
-  //     setMascotas(dataMascotas);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
+  // Vista 1: Landing Page
+  if (currentScreen === 'landing') {
+    return <LandingPage onNavigate={setCurrentScreen} />;
+  }
 
-  // // --- MÉTODOS TUTOR ---
-  // const handleSaveTutor = async (data) => {
-  //   try {
-  //     setError(null);
-  //     if (tutorEdit) {
-  //       await api.updateTutor(tutorEdit.id, data);
-  //     } else {
-  //       await api.createTutor(data);
-  //     }
-  //     setTutorEdit(null);
-  //     cargarDatos();
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
+  // Vista 2: Inicio de Sesión
+  if (currentScreen === 'login') {
+    return (
+      <Login 
+        onSuccess={() => setCurrentScreen('dashboard')} 
+        onNavigate={setCurrentScreen} 
+      />
+    );
+  }
 
-  // const handleDeleteTutor = async (id) => {
-  //   if (!confirm('¿Eliminar tutor? Se borrarán sus mascotas asociadas en cascada.')) return;
-  //   try {
-  //     setError(null);
-  //     await api.deleteTutor(id);
-  //     cargarDatos();
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
+  // Vista 3: Registro de Usuario
+  if (currentScreen === 'register') {
+    return (
+      <Register 
+        onSuccess={() => setCurrentScreen('dashboard')} 
+        onNavigate={setCurrentScreen} 
+      />
+    );
+  }
 
-  // // --- MÉTODOS MASCOTA ---
-  // const handleSaveMascota = async (data) => {
-  //   try {
-  //     setError(null);
-  //     if (mascotaEdit) {
-  //       await api.updateMascota(mascotaEdit.id, data);
-  //     } else {
-  //       await api.createMascota(data);
-  //     }
-  //     setMascotaEdit(null);
-  //     cargarDatos();
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
-
-  // const handleDeleteMascota = async (id) => {
-  //   if (!confirm('¿Eliminar mascota?')) return;
-  //   try {
-  //     setError(null);
-  //     await api.deleteMascota(id);
-  //     cargarDatos();
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
-
+  // Vista 4: Dashboard de Administración (Pantalla autenticada)
   return (
     <div className="container">
-      <Landing />
-      {/* <h1>🐾 Petisos - Panel de Control Veterinaria</h1>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h1>🐾 Petisos - Panel de Control</h1>
+        <button className="btn-secondary" onClick={() => setCurrentScreen('landing')}>
+          Cerrar Sesión / Ir al Inicio
+        </button>
+      </header>
 
       {error && <div className="error-msg">⚠️ {error}</div>}
 
@@ -116,7 +88,7 @@ export default function App() {
           />
           <TutorList 
             tutores={tutores} 
-            onEdit={(t) => setTutorEdit(t)} 
+            onEdit={setTutorEdit} 
             onDelete={handleDeleteTutor} 
           />
         </>
@@ -130,11 +102,11 @@ export default function App() {
           />
           <MascotaList 
             mascotas={mascotas} 
-            onEdit={(m) => setMascotaEdit(m)} 
+            onEdit={setMascotaEdit} 
             onDelete={handleDeleteMascota} 
           />
         </>
-      )} */}
+      )}
     </div>
   );
 }
