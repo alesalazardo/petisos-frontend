@@ -1,14 +1,15 @@
 :root {
   /* Colores principales */
- --primary: #8b5cf6;
+ /* --primary: #8b5cf6; */
+  --primary: #c89b52;
   --primary-hover: #7c3aed;
   --accent-cyan: #06b6d4;
   --danger: #f43f5e;
   --success: #10b981;
 
   /* Gradiente Activo */
-  --grad-primary: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
-  --grad-hover: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+  --grad-primary: linear-gradient(135deg, #229639 0%, #06b6d4 100%);
+  --grad-hover: linear-gradient(135deg,#0891b2 100%);
 
   /* Estados */
   --danger: #dc2626;
@@ -16,13 +17,14 @@
   --success: #16a34a;
 
   /* Superficies Oscuras Modernas */
-  --bg-main: #0f172a;
+  /* --bg-main: #354c81; */
+  --bg-main: #417e66;
   --bg-card: rgba(30, 41, 59, 0.75);
   --bg-card-hover: rgba(51, 65, 85, 0.85);
   
  /* Texto y Bordes */
   --text-main: #f8fafc;
-  --text-muted: #94a3b8;
+  --text-muted: #cadeb8;
   --border-glow: rgba(139, 92, 246, 0.3);
   --border-subtle: rgba(255, 255, 255, 0.1);
 

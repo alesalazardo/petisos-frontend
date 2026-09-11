@@ -1,12 +1,29 @@
 .landing-container {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
     align-items: center;
     justify-content: center;
     height: 100vh;
     text-align: center;
 }
 
+h1, p {
+    margin: 0px;
+}
+
 .landing-container h1 {
     color: var(--primary);
+}
+.landing-logo {
+    width: 150px;
+}
+
+button {
+    background: var(--grad-primary);
+    border-radius: 10px;
+}
+
+button:hover {
+    background: var(--grad-hover);
 }
