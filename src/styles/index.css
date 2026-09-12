@@ -1,15 +1,10 @@
 :root {
-  /* Colores principales */
- /* --primary: #8b5cf6; */
-  --primary: #c89b52;
-  --primary-hover: #7c3aed;
+  /* Colores principales de botón*/
+  --primary: #f4ad3c;
+  --primary-hover:#d99221 ;
+  --secondary:#7c3aed;
+  --secondary-hover:#6d28d9;
   --accent-cyan: #06b6d4;
-  --danger: #f43f5e;
-  --success: #10b981;
-
-  /* Gradiente Activo */
-  --grad-primary: linear-gradient(135deg, #229639 0%, #06b6d4 100%);
-  --grad-hover: linear-gradient(135deg,#0891b2 100%);
 
   /* Estados */
   --danger: #dc2626;
@@ -17,21 +12,21 @@
   --success: #16a34a;
 
   /* Superficies Oscuras Modernas */
-  /* --bg-main: #354c81; */
-  --bg-main: #417e66;
-  --bg-card: rgba(30, 41, 59, 0.75);
-  --bg-card-hover: rgba(51, 65, 85, 0.85);
+  --bg-main: #2d3c55;
+  --bg-card: #1e293bbf;
+  --bg-card-hover: #334155d9;
   
  /* Texto y Bordes */
-  --text-main: #f8fafc;
+  --text-main: #2d3139;
+  --text-white: #ffffff;
   --text-muted: #cadeb8;
-  --border-glow: rgba(139, 92, 246, 0.3);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-glow: #8b5cf64d;
+  --border-subtle: #ffffff1a;
 
   /* Sombras ligeras */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 4px 20px rgba(139, 92, 246, 0.25);
+  --shadow-sm: 0 1px 3px #0000000d;
+  --shadow-md: 0 4px 6px -1px #0000001a;
+  --shadow-glow: 0 4px 20px #8b5cf640;
   --glass-blur: blur(12px);
 }
 
@@ -59,20 +54,32 @@ body {
   transform: translateY(-2px);
 }
 
-/* Botón Neón / Dinámico */
-.btn-dynamic {
-  background: var(--grad-primary);
-  color: #ffffff;
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-white);
   border: none;
+  padding: 8px 5px;
   border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 600;
   cursor: pointer;
-  box-shadow: var(--shadow-glow);
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
 }
 
-.btn-dynamic:hover {
-  background: var(--grad-hover);
-  transform: scale(1.02);
+.btn-primary:hover {
+    background: var(--primary-hover);
+    color: var(--bg-card);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text-white);
+  border: none;
+  padding: 8px 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-hover);
+    color: var(--bg-card);
 }
