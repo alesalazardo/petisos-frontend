@@ -1,130 +1,88 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { usePetisosData } from "./hooks/usePetisosData";
+
+// Rutas Públicas
 import LandingPage from "./components/Landing";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import TutorForm from "./components/TutorForm";
-import TutorList from "./components/TutorList";
-import MascotaForm from "./components/MascotaForm";
-import MascotaList from "./components/MascotaList";
 import Navbar from "./components/navbar";
 
+// Módulos de Rutas Desensamblados
+import AdminRoutes from "./routes/AdminRoutes";
+import UserRoutes from "./routes/UserRoutes";
+
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState("landing"); // 'landing' | 'login' | 'register' | 'dashboard'
-  const [activeTab, setActiveTab] = useState("tutores"); // 'tutores' | 'mascotas'
+  const [user, setUser] = useState(null);
+  const petisosData = usePetisosData();
 
-  // Hook que contiene toda la lógica de negocio y llamadas HTTP
-  const {
-    tutores,
-    mascotas,
-    tutorEdit,
-    setTutorEdit,
-    mascotaEdit,
-    setMascotaEdit,
-    error,
-    handleSaveTutor,
-    handleDeleteTutor,
-    handleSaveMascota,
-    handleDeleteMascota,
-  } = usePetisosData();
+  const handleLogout = () => {
+    setUser(null);
+  };
 
-  // Vista 1: Landing Page
-  if (currentScreen === "landing") {
-    return (
-      <>
-        <Navbar />
-        <LandingPage onNavigate={setCurrentScreen} />
-        <Register />
-        <Login />
-      </>
-    );
-  }
-
-  // Vista 2: Inicio de Sesión
-  // if (currentScreen === "login") {
-  //   return (
-  //     <Login
-  //       onSuccess={() => setCurrentScreen("dashboard")}
-  //       onNavigate={setCurrentScreen}
-  //     />
-  //   );
-  // }
-
-  // Vista 3: Registro de Usuario
-  // if (currentScreen === "register") {
-  //   return (
-  //     <Register
-  //       onSuccess={() => setCurrentScreen("dashboard")}
-  //       onNavigate={setCurrentScreen}
-  //     />
-  //   );
-  // }
-
-  // Vista 4: Dashboard de Administración (Pantalla autenticada)
   return (
-    <div className="container">
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <h1>🐾 Petisos - Panel de Control</h1>
-        <button
-          className="btn-secondary"
-          onClick={() => setCurrentScreen("landing")}
-        >
-          Cerrar Sesión / Ir al Inicio
-        </button>
-      </header>
+    <Router>
+      <Navbar />
+      <Routes>
+        {/* ================= RUTAS PÚBLICAS ================= */}
+        <Route
+          path="/"
+          element={
+            <>
+              
+              <LandingPage />
+            </>
+          }
+        />
 
-      {error && <div className="error-msg">⚠️ {error}</div>}
+        <Route
+          path="/login"
+          element={
+            !user ? (
+              <Login onSuccess={(userData) => setUser(userData)} />
+            ) : (
+              <Navigate
+                to={user.rol === "admin" ? "/admin-dashboard" : "/client-dashboard"}
+                replace
+              />
+            )
+          }
+        />
 
-      <div className="tabs">
-        <button
-          className={`tab-btn ${activeTab === "tutores" ? "active" : ""}`}
-          onClick={() => setActiveTab("tutores")}
-        >
-          Gestión de Tutores
-        </button>
-        <button
-          className={`tab-btn ${activeTab === "mascotas" ? "active" : ""}`}
-          onClick={() => setActiveTab("mascotas")}
-        >
-          Gestión de Mascotas
-        </button>
-      </div>
+        <Route
+          path="/register"
+          element={
+            !user ? (
+              <Register onSuccess={(userData) => setUser(userData)} />
+            ) : (
+              <Navigate
+                to={user.rol === "admin" ? "/admin-dashboard" : "/client-dashboard"}
+                replace
+              />
+            )
+          }
+        />
 
-      {activeTab === "tutores" ? (
-        <>
-          <TutorForm
-            tutorActual={tutorEdit}
-            onSave={handleSaveTutor}
-            onCancel={() => setTutorEdit(null)}
-          />
-          <TutorList
-            tutores={tutores}
-            onEdit={setTutorEdit}
-            onDelete={handleDeleteTutor}
-          />
-        </>
-      ) : (
-        <>
-          <MascotaForm
-            mascotaActual={mascotaEdit}
-            tutores={tutores}
-            onSave={handleSaveMascota}
-            onCancel={() => setMascotaEdit(null)}
-          />
-          <MascotaList
-            mascotas={mascotas}
-            onEdit={setMascotaEdit}
-            onDelete={handleDeleteMascota}
-          />
-        </>
-      )}
-    </div>
+        {/* ================= MODULOS ENRUTADORES PRIVADOS ================= */}
+        <Route
+          path="/admin-dashboard/*"
+          element={
+            <AdminRoutes
+              user={user}
+              onLogout={handleLogout}
+              petisosData={petisosData}
+            />
+          }
+        />
+
+        <Route
+          path="/client-dashboard/*"
+          element={<UserRoutes user={user} onLogout={handleLogout} />}
+        />
+
+        {/* Redirección 404 */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }

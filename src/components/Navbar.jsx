@@ -1,14 +1,40 @@
+import { Link, NavLink } from 'react-router-dom';
 import './../styles/navbar.css';
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="navbar-logo">Petisos</div>
+      
+      <div>
+        Petisos
+      </div>
+
+      {/* Enlaces de navegación utilizando React Router */}
       <ul className="navbar-links">
-        <li><a href="#home">Inicio</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Servicios</a></li>
-        <li><a href="#contact">Contacto</a></li>
+        <li>
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Inicio
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/login" 
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Iniciar Sesión
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/register" 
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Registro
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
