@@ -7,11 +7,6 @@
     position: relative;
 }
 
-.auth-card {
-    max-width: 400px;
-    margin: 40px auto;
-}
-
 .form-container {
     display: flex;
     flex-direction: column;
@@ -23,7 +18,7 @@ p {
     font-size: 0.9rem;
 }
 
-.login-img, .login-img2{
+.login-img, .login-img2,  .register-img {
     width: 50px;
     z-index: 1;
     position: absolute;
@@ -34,4 +29,15 @@ p {
 .login-img2 {
     margin-left: -170px;
     rotate: calc(-40deg);
+}
+
+.register-img {
+    width: 90px;
+    rotate: calc(0deg);
+    margin-left: 0px;
+    margin-bottom: 200px;
+}
+
+.register-title {
+    margin-top: 50px;
 }

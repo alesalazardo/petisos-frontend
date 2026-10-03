@@ -1,6 +1,7 @@
 .landing-container {
     display: flex;
     flex-direction: column;
+    /* background-image: url('./../assets/fondo-huellitas2.png'); */
     background-image: url('./../assets/fondo-huellitas.jpg');
     background-size: contain;
     align-items: center;

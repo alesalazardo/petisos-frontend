@@ -1,4 +1,5 @@
 import "./../../styles/auth.css";
+import orejitas from './../../assets/orejitas.png';
 
 export default function Register({ onSuccess, onNavigate }) {
   const handleSubmit = (e) => {
@@ -9,8 +10,9 @@ export default function Register({ onSuccess, onNavigate }) {
   return (
     <>
       <div className="auth-container">
-        <div className="auth-card">
-          <h3>Crear Cuenta</h3>
+        <img src={orejitas} alt="Orejas de gato" className="register-img" />
+        <div className="card">
+          <h3 className="register-title">Crear Cuenta</h3>
           <form onSubmit={handleSubmit} className="form-container">
             <input type="text" placeholder="Nombre completo" required />
             <input type="email" placeholder="Correo electrónico" required />
