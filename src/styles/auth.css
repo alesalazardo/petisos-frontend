@@ -1,43 +1,56 @@
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: var(--primary);
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--primary);
+  position: relative;
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 p {
-    margin-top: 15px;
-    font-size: 0.9rem;
+  margin-top: 15px;
 }
 
-.login-img, .login-img2,  .register-img {
-    width: 50px;
-    z-index: 1;
-    position: absolute;
-    margin-left: 170px;
-    margin-bottom: 130px;
-    rotate: calc(40deg);
+.login-img,
+.login-img2,
+.register-img {
+  width: 90px;
+  z-index: 1;
+  position: absolute;
+  margin-left: 310px;
+  /* margin-bottom: 150px; */
+  rotate: calc(40deg);
 }
 .login-img2 {
-    margin-left: -170px;
-    rotate: calc(-40deg);
+  margin-left: -50px;
+  rotate: calc(-40deg);
 }
 
 .register-img {
-    width: 90px;
-    rotate: calc(0deg);
-    margin-left: 0px;
-    margin-bottom: 200px;
+  width: 200px;
+  rotate: calc(0deg);
+  margin-left: 70px;
+  margin-top: -50px;
 }
 
 .register-title {
-    margin-top: 50px;
+  margin-top: 50px;
+}
+
+.hero,
+.card {
+  text-align: center;
+  padding: 50px;
+}
+
+.auth-blur {
+  background-color: #f0f8ff2c;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
 }

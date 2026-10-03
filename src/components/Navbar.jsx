@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="navbar">
       
       <div>
-        Petisos
+        <h2>Petisos</h2>
       </div>
 
       {/* Enlaces de navegación utilizando React Router */}

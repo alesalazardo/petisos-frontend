@@ -6,7 +6,7 @@ import { usePetisosData } from "./hooks/usePetisosData";
 import LandingPage from "./components/Landing";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 
 // Módulos de Rutas Desensamblados
 import AdminRoutes from "./routes/AdminRoutes";

@@ -54,14 +54,15 @@ body {
   transform: translateY(-2px);
 }
 
-.btn-primary {
+.btn-primary, .btn-secondary {
   background: var(--primary);
   color: var(--text-white);
   border: none;
-  padding: 8px 5px;
+  padding: 18px 25px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
 .btn-primary:hover {
@@ -71,15 +72,25 @@ body {
 
 .btn-secondary {
   background: var(--secondary);
-  color: var(--text-white);
-  border: none;
-  padding: 8px 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
 .btn-secondary:hover {
     background: var(--secondary-hover);
     color: var(--bg-card);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 0.9rem;
+}
+
+input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  font-size: 1rem;
 }
