@@ -1,12 +1,46 @@
 .landing-container {
     display: flex;
     flex-direction: column;
+    background-image: url('./../assets/fondo-huellitas.jpg');
+    background-size: contain;
     align-items: center;
     justify-content: center;
     height: 100vh;
     text-align: center;
 }
 
+.landing-blur {
+    background-color: #f0f8ff0e;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+}
+
+h1, p {
+    margin: 0px;
+}
+
+h2 {
+    color: var(--text-white);
+    font-size: 1.5rem;
+    margin: 0px 10px 50px 0;
+}
+
 .landing-container h1 {
     color: var(--primary);
+    font-size: 2.5rem;
+}
+
+.landing-logo {
+    width: 150px;
+}
+
+.landing-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.hero, .card {
+    text-align: center;
+    padding: 50px;
 }

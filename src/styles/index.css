@@ -1,14 +1,10 @@
 :root {
-  /* Colores principales */
- --primary: #8b5cf6;
-  --primary-hover: #7c3aed;
+  /* Colores principales de botón*/
+  --primary: #f4ad3c;
+  --primary-hover:#d99221 ;
+  --secondary:#7c3aed;
+  --secondary-hover:#6d28d9;
   --accent-cyan: #06b6d4;
-  --danger: #f43f5e;
-  --success: #10b981;
-
-  /* Gradiente Activo */
-  --grad-primary: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
-  --grad-hover: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
 
   /* Estados */
   --danger: #dc2626;
@@ -16,20 +12,21 @@
   --success: #16a34a;
 
   /* Superficies Oscuras Modernas */
-  --bg-main: #0f172a;
-  --bg-card: rgba(30, 41, 59, 0.75);
-  --bg-card-hover: rgba(51, 65, 85, 0.85);
+  --bg-main: #2d3c55;
+  --bg-card: #1e293bbf;
+  --bg-card-hover: #334155d9;
   
  /* Texto y Bordes */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-glow: rgba(139, 92, 246, 0.3);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --text-main: #2d3139;
+  --text-white: #ffffff;
+  --text-muted: #cadeb8;
+  --border-glow: #8b5cf64d;
+  --border-subtle: #ffffff1a;
 
   /* Sombras ligeras */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 4px 20px rgba(139, 92, 246, 0.25);
+  --shadow-sm: 0 1px 3px #0000000d;
+  --shadow-md: 0 4px 6px -1px #0000001a;
+  --shadow-glow: 0 4px 20px #8b5cf640;
   --glass-blur: blur(12px);
 }
 
@@ -57,20 +54,43 @@ body {
   transform: translateY(-2px);
 }
 
-/* Botón Neón / Dinámico */
-.btn-dynamic {
-  background: var(--grad-primary);
-  color: #ffffff;
+.btn-primary, .btn-secondary {
+  background: var(--primary);
+  color: var(--text-white);
   border: none;
+  padding: 18px 25px;
   border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 600;
   cursor: pointer;
-  box-shadow: var(--shadow-glow);
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
-.btn-dynamic:hover {
-  background: var(--grad-hover);
-  transform: scale(1.02);
+.btn-primary:hover {
+    background: var(--primary-hover);
+    color: var(--bg-card);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-hover);
+    color: var(--bg-card);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 0.9rem;
+}
+
+input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  font-size: 1rem;
 }
